@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ac8fcdbc-596e-4c8d-9265-b36fc90c9bc0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="/usr/lib/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/mod" />
+  </component>
+  <component name="ProjectId" id="1Z9HIYibSV8E41oslraOMGtXgPZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ac8fcdbc-596e-4c8d-9265-b36fc90c9bc0" name="Default Changelist" comment="" />
+      <created>1584244310419</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584244310419</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="558" y="216" key="#Go_Modules_(vgo)" timestamp="1584244808313">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="558" y="216" key="#Go_Modules_(vgo)/0.28.1920.1052@0.28.1920.1052" timestamp="1584244808313" />
+    <state x="719" y="435" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584245527726">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="719" y="435" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.28.1920.1052@0.28.1920.1052" timestamp="1584245527726" />
+    <state x="459" y="169" key="SettingsEditor" timestamp="1584244617292">
+      <screen x="0" y="28" width="1920" height="1052" />
+    </state>
+    <state x="459" y="169" key="SettingsEditor/0.28.1920.1052@0.28.1920.1052" timestamp="1584244617292" />
+  </component>
+</project>
