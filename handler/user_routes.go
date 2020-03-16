@@ -27,6 +27,7 @@ func Signup(db *mongo.Database) gin.HandlerFunc {
 		email := c.PostForm("email")
 		username := c.PostForm("username")
 		password := c.PostForm("password")
+		fmt.Println("SIGNUP: ", username, email, password)
 		if len(email) > 0 && len(username) > 0 && len(password) > 0 {
 			//--------------------------------IF ALL FIELDS PROVIDED
 			userres := usercollection.FindOne(ctx, models.User{Email: email})
@@ -131,7 +132,9 @@ func Login(db *mongo.Database) gin.HandlerFunc {
 								"uid":   user.Id.Hex(),
 							})
 							c.JSON(http.StatusOK, gin.H{
-								"token": string(token),
+								"token":    string(token),
+								"username": user.Username,
+								"email":    user.Email,
 							})
 						}
 
