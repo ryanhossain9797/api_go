@@ -6,17 +6,17 @@ import (
 	"net/http"
 	"time"
 
+	"main/database"
 	"main/models"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func Games(db *mongo.Database) gin.HandlerFunc {
+func Games() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		collection := db.Collection("articles")
+		collection := database.DB.Collection("articles")
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 		cursor, err := collection.Find(ctx, bson.M{})
 		if err != nil {
@@ -36,9 +36,9 @@ func Games(db *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func GameById(db *mongo.Database) gin.HandlerFunc {
+func GameById() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		collection := db.Collection("articles")
+		collection := database.DB.Collection("articles")
 		id, _ := primitive.ObjectIDFromHex(c.Param("aid"))
 		article := models.Game{}
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)

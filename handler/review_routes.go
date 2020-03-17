@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"main/database"
 	"main/models"
 	"net/http"
 	"time"
@@ -11,13 +12,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
 )
 
-func Comments(db *mongo.Database) gin.HandlerFunc {
+func Comments() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		articleId, _ := primitive.ObjectIDFromHex(c.Param("aid"))
-		collection := db.Collection("comments")
+		collection := database.DB.Collection("comments")
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 		cursor, err := collection.Find(ctx, models.Review{Article: articleId})
 		if err != nil {
@@ -37,12 +37,12 @@ func Comments(db *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func PostComment(db *mongo.Database) gin.HandlerFunc {
+func PostComment() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("POSTCOMMENT: called")
-		gamecollection := db.Collection("articles")
+		gamecollection := database.DB.Collection("articles")
 		articleId, _ := primitive.ObjectIDFromHex(c.Param("aid"))
-		collection := db.Collection("comments")
+		collection := database.DB.Collection("comments")
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 		gameres := gamecollection.FindOne(ctx, bson.M{"_id": articleId})
 
@@ -63,13 +63,13 @@ func PostComment(db *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func DeleteComment(db *mongo.Database) gin.HandlerFunc {
+func DeleteComment() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		articleId, _ := primitive.ObjectIDFromHex(c.Param("aid"))
 		commentId, _ := primitive.ObjectIDFromHex(c.Param("cid"))
 		username := c.GetHeader("username")
 		if len(username) > 0 {
-			collection := db.Collection("comments")
+			collection := database.DB.Collection("comments")
 			ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 			res, err := collection.DeleteOne(ctx, models.Review{Article: articleId, Id: commentId, Username: username})
 			if err != nil {

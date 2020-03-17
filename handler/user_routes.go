@@ -7,22 +7,22 @@ import (
 	"net/http"
 	"time"
 
+	"main/database"
 	"main/models"
 
 	"github.com/gbrlsnchs/jwt/v3"
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	"go.mongodb.org/mongo-driver/mongo"
 	"golang.org/x/crypto/bcrypt"
 )
 
 var hs = jwt.NewHS256([]byte("secret"))
 
-func Signup(db *mongo.Database) gin.HandlerFunc {
+func Signup() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("SIGNUP: called")
-		usercollection := db.Collection("users")
+		usercollection := database.DB.Collection("users")
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 		email := c.PostForm("email")
 		username := c.PostForm("username")
@@ -79,10 +79,10 @@ type CustomPayload struct {
 	jwt.Payload
 }
 
-func Login(db *mongo.Database) gin.HandlerFunc {
+func Login() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("LOGIN: called")
-		usercollection := db.Collection("users")
+		usercollection := database.DB.Collection("users")
 		ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 		email := c.PostForm("email")
 		password := c.PostForm("password")
@@ -163,7 +163,7 @@ func Login(db *mongo.Database) gin.HandlerFunc {
 	}
 }
 
-func Sudo(db *mongo.Database) gin.HandlerFunc {
+func Sudo() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		fmt.Println("SUDO: called")
 		token := []byte(c.GetHeader("token"))
@@ -174,7 +174,7 @@ func Sudo(db *mongo.Database) gin.HandlerFunc {
 			hd, err := jwt.Verify(token, hs, &pl)
 			if err == nil {
 
-				usercollection := db.Collection("users")
+				usercollection := database.DB.Collection("users")
 				ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 				userId, _ := primitive.ObjectIDFromHex(pl.Subject)
 				userres := usercollection.FindOne(ctx, bson.M{"_id": userId})
